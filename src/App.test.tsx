@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(
+test('render profile title', () => {
+  const { getByRole } = render(
     <React.StrictMode>
       <App />
     </React.StrictMode>
   );
 
-  expect(getByText(/learn/i)).toBeInTheDocument();
+  expect(getByRole('app')).toBeInTheDocument();
 });
