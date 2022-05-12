@@ -1,9 +1,8 @@
-
 /**
  * A valid QQ number must conform to the following rules:
  * 1. must be a positive number;
  * 2. can't start with 0;
- * 3. lengths between 4 and 12. 
+ * 3. lengths between 4 and 14. 
  * @param {string} qqnumber
  * @returns {boolean}
  */
