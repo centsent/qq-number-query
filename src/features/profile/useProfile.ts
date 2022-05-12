@@ -28,6 +28,7 @@ export const useProfile = () => {
 
 			if (!isValid) {
 				setError(INVALID_QQ_NUMBER_ERROR);
+				setUserInfo(defaultUserInfo);
 				return;
 			}
 
