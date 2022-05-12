@@ -6,12 +6,7 @@ import styles from "./Profile.module.css";
  * A React Component to search and display QQ user info.
  */
 export function Profile() {
-  const {
-    error,
-    handleChange,
-    isLoading,
-    userInfo,
-  } = useProfile();
+  const { error, handleChange, isLoading, userInfo } = useProfile();
   const hasError = error !== "";
   let className = styles.qqNumberInput;
   if (hasError) {

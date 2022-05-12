@@ -24,37 +24,41 @@ export const useProfile = () => {
   const [userInfo, setUserInfo] = useState<UserInfo>(defaultUserInfo);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Send the API request.
+  const request = () => {
+    setIsLoading(true);
+    getUserInfo(qqnumber)
+      .then((userInfo: UserInfo) => {
+        setUserInfo(userInfo);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setIsLoading(false);
+      });
+  };
+
   useEffect(() => {
     const isValid = isValidQQNumber(qqnumber);
     if (!isValid) {
       return;
     }
 
-    setIsLoading(true);
-      getUserInfo(qqnumber)
-        .then((userInfo: UserInfo) => {
-          setUserInfo(userInfo);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          setError(err.message);
-          setIsLoading(false);
-        });
+    request();
   }, [qqnumber]);
 
   // Validate the input and the correct value, otherwise return an error.
   const handleChange = debounce((event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     const isValid = isValidQQNumber(value);
+    setUserInfo(defaultUserInfo);
 
     if (!isValid) {
       setError(INVALID_QQ_NUMBER_ERROR);
-      setUserInfo(defaultUserInfo);
       return;
     }
 
     setError("");
-    setUserInfo(defaultUserInfo);
     setQqnumber(value);
   });
 
