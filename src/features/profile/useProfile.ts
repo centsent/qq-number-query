@@ -1,6 +1,6 @@
-import { useState, ChangeEvent, KeyboardEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { getUserInfo, UserInfo } from "./profileAPI";
-import { debounce, isValidQQNumber, throttle } from "../../utils/utils";
+import { debounce, isValidQQNumber } from "../../utils/utils";
 
 const INVALID_QQ_NUMBER_ERROR = "please input a valid QQ number.";
 const defaultUserInfo: UserInfo = {
@@ -24,6 +24,24 @@ export const useProfile = () => {
   const [userInfo, setUserInfo] = useState<UserInfo>(defaultUserInfo);
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    const isValid = isValidQQNumber(qqnumber);
+    if (!isValid) {
+      return;
+    }
+
+    setIsLoading(true);
+      getUserInfo(qqnumber)
+        .then((userInfo: UserInfo) => {
+          setUserInfo(userInfo);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setError(err.message);
+          setIsLoading(false);
+        });
+  }, [qqnumber]);
+
   // Validate the input and the correct value, otherwise return an error.
   const handleChange = debounce((event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -40,39 +58,9 @@ export const useProfile = () => {
     setQqnumber(value);
   });
 
-  // Submit the API request.
-  const submit = () => {
-    const isValid = isValidQQNumber(qqnumber);
-
-    if (isValid) {
-      setIsLoading(true);
-      getUserInfo(qqnumber)
-        .then((userInfo: UserInfo) => {
-          setUserInfo(userInfo);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          setError(err.message);
-          setIsLoading(false);
-        });
-    }
-  };
-
-  // Send API request when pressed Enter key.
-  const handleKeyUp = throttle((event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      submit();
-    }
-  });
-
-  // Send API request when mouse out.
-  const handleSubmit = throttle((_: ChangeEvent<HTMLInputElement>) => submit());
-
   return {
     error,
     handleChange,
-    handleKeyUp,
-    handleSubmit,
     isLoading,
     userInfo,
   };

@@ -9,8 +9,6 @@ export function Profile() {
   const {
     error,
     handleChange,
-    handleKeyUp,
-    handleSubmit,
     isLoading,
     userInfo,
   } = useProfile();
@@ -29,8 +27,6 @@ export function Profile() {
           type="text"
           name="qqnumber"
           onChange={handleChange}
-          onBlur={handleSubmit}
-          onKeyUp={handleKeyUp}
           className={className}
         />
 
