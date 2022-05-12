@@ -1,9 +1,9 @@
-import { Profile } from './features/profile/Profile';
-import './App.css';
+import { Profile } from "./features/profile/Profile";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App" role="app">
+    <div className="App" role="navigation">
       <header className="App-header">
         <Profile />
       </header>

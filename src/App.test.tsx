@@ -1,13 +1,13 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('render profile title', () => {
-  const { getByRole } = render(
+test("render profile title", () => {
+  render(
     <React.StrictMode>
       <App />
     </React.StrictMode>
   );
 
-  expect(getByRole('app')).toBeInTheDocument();
+  expect(screen.getByRole("navigation")).toBeInTheDocument();
 });

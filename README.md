@@ -14,7 +14,7 @@ $ npx creaste-react-app qq-number-query --template typescript
 	- [ ] Debounced Function
 	- [ ] Throttled Function
 - [ ] End to end test
-- [ ] Lint before test and build
+- [x] Lint before test and build
 
 
 ## Development
