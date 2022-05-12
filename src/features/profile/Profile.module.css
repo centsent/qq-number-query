@@ -1,0 +1,61 @@
+.title {
+  margin-bottom: 10px;
+}
+
+.form {
+  padding: 5px;
+}
+
+.form label {
+  font-size: medium;
+}
+
+.form .qqNumberInput {
+  outline: none !important;
+  border: none !important;
+  border-bottom: 1px solid #ccc !important;
+  margin-left: 10px;
+  font-size: medium;
+}
+
+.form .danger {
+  border-color: #f50000 !important;
+}
+
+.form p.danger {
+  color: #f50000 !important;
+  font-size: small !important;
+}
+
+.userInfo {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 60px;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.userInfo .avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+.userInfo .info {
+  margin-left: 10px;
+}
+
+.userInfo .name {
+  font-size: medium;
+  text-align: left;
+  margin-top: 2px;
+}
+
+.userInfo .number {
+  font-size: medium;
+  text-align: left;
+  font-color: #ccc;
+  margin-top: 5px;
+}
