@@ -8,7 +8,7 @@
  * @returns {boolean}
  */
 export function isValidQQNumber(qqnumber: string): boolean {
-	const regex = /^[1-9]\d{3,11}/
+	const regex = /^[1-9]\d{3,13}$/
 	const ok = regex.exec(qqnumber);
 	return ok != null;
 }
